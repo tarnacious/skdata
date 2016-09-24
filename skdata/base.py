@@ -219,7 +219,7 @@ class SklearnClassifier(SemanticsDelegator):
     def best_model_vector_classification(self, train, valid):
         # TODO: use validation set if not-None
         model = self.new_model()
-        print 'SklearnClassifier training on data set of shape', train.x.shape
+        print('SklearnClassifier training on data set of shape', train.x.shape)
         model.fit(train.x, train.y)
         model.trained_on = train.name
         self.results['best_model'].append(

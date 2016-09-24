@@ -26,7 +26,12 @@ Proceedings of the IEEE, 86(11):2278-2324, November 1998.
 import os
 import gzip
 import logging
-import urllib
+
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib import urlopen
+
 import shutil
 
 import numpy as np
@@ -168,7 +173,7 @@ class MNIST(object):
                 if download_if_missing:
                     logger.warn("Downloading %s %s: %s => %s" % (
                         FILE_SIZES_PRETTY[role], role, url, dest))
-                    downloader = urllib.urlopen(url)
+                    downloader = urlopen(url)
                     data = downloader.read()
                     tmp = open(dest, 'wb')
                     tmp.write(data)
